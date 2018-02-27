@@ -8,6 +8,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.IOException;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,14 +20,17 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import useCase.MainClass;
+import useCase.alice.PersonnageMarvel;
 import useCase.alice.infoComics;
 
 public class AffichageComic {
+	
 	JButton bouton1 = new JButton("Rechercher");
 	
 	String recherche = "";
 	String annee = "";
 	String chapitre = "";
+	
 	JPanel pan3 = new JPanel();
 	JScrollPane scrollPane = new JScrollPane() ;
 	
@@ -35,10 +39,29 @@ public class AffichageComic {
 	JTextField id = new JTextField(20);
 	JTextField anne = new JTextField(10);
 	JTextField chap = new JTextField(10);
+	
 	JPanel pan2 = new JPanel();
 	
 	//On va maintenant creer notre fenetre
 		public AffichageComic(){
+			AbstractAction action = new AbstractAction()
+			{
+			    public void actionPerformed(ActionEvent e)
+			    {
+			    	recherche = id.getText();
+					annee = (anne.getText());
+					//System.out.println(annee.equals(""));
+					chapitre = chap.getText();
+					try {
+						infoComics nouvel = new infoComics();
+						resultatH.setText(nouvel.GetComics(recherche, annee, chapitre, ""));
+					} catch (IOException e1) {
+						resultatH.setText("Erreur identifiant non trouve !");
+						e1.printStackTrace();
+					}
+			    }
+			};
+			
 			Ecouteur listen = new Ecouteur();
 			resultatH.setOpaque(true);
 			resultatH.setContentType("text/html");
@@ -47,6 +70,9 @@ public class AffichageComic {
 			pan.add(id);
 			pan.add(anne);
 			pan.add(chap);
+			id.addActionListener(action);
+			anne.addActionListener(action);
+			chap.addActionListener(action);
 			resultatH.setEditable(false);
 			JPanel pan1 = new JPanel();
 			pan1.add(bouton1);
@@ -66,7 +92,7 @@ public class AffichageComic {
 			
 			scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollPane.setViewportView(resultatH);
-			scrollPane.setPreferredSize(new Dimension(700,670));
+			scrollPane.setPreferredSize(new Dimension(700,550));
 			pan3.add(scrollPane);
 			
 			id.addFocusListener(new FocusAdapter() {
@@ -74,7 +100,9 @@ public class AffichageComic {
 			    public void focusGained(FocusEvent e) {
 			    	id.setText("");
 			    }
-			});	
+			});
+			
+			
 		}
 
 	
@@ -94,6 +122,9 @@ public class AffichageComic {
 					e1.printStackTrace();
 				}
 			}
+	
+			
+
 		}
 	}
 
@@ -111,8 +142,6 @@ public class AffichageComic {
 
 		return pan3;
 	}
-	
-	/*
 	public static void main(String[] args) {
 		JFrame fen = new JFrame();
 		JTabbedPane fullonglet  = new JTabbedPane();
@@ -124,6 +153,5 @@ public class AffichageComic {
 		//On definit une taille suffisante pour tout afficher.
 		fen.setSize(1000, 1000);
 	}
-	*/
 
 }

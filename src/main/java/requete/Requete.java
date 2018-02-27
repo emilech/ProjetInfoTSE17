@@ -9,13 +9,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.zip.GZIPInputStream;
-
+/**Classe qui réalise la requete Get **/
 public class Requete extends Authenticator {
 	
 private static Requete requete = null;
 	
 	public Requete(){}
-	
+	/** Permet de vérifier si un objet Requete est déjà créé pour ne pas en créer trop **/
 	public static Requete getInstance(){
 		
 		if (requete == null){
@@ -24,10 +24,11 @@ private static Requete requete = null;
 		
 		return requete;
 	}
+	/** Fonction inutile a nettoyer **/
 	 public PasswordAuthentication getPasswordAuthentication () {
          return new PasswordAuthentication ("user", "password".toCharArray());
      }
-
+	 /** Fonction qui réalise la requete GET **/
     public String getInfo(String categorie, String infoVoulue, String finURL) throws IOException {
 
         String debutUrl = "https://gateway.marvel.com";

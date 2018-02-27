@@ -15,6 +15,9 @@ import javax.swing.*;
 import interfaceGraphique.Alice.AffichageComic;
 import interfaceGraphique.Alice.AffichagePerso;
 
+
+
+
 public class OngletAlice{
 	JTabbedPane ongletA  = new JTabbedPane();
 	JPanel pan = new JPanel();
@@ -22,15 +25,20 @@ public class OngletAlice{
 		public OngletAlice(){
 			AffichageComic  ong1 = new AffichageComic();
 			//pan =(ong1.envoie());
-			ongletA.add("AffichageComic", ong1.envoie());
-			
+			ongletA.add("Rechercher un Comic", ong1.envoie());
 			AffichagePerso  ong2 = new AffichagePerso();
 			//pan =(ong1.envoie());
-			ongletA.add("AffichagePerso", ong2.envoie());
+			ongletA.add("Rechercher un Personnage", ong2.envoie());
+			
+			
 			
 		}
 
-		
+	
+
+
+	
+	
 	public  JTabbedPane envoieAlice(){
 		//new OngletAlice();
 		return ongletA;
@@ -39,13 +47,9 @@ public class OngletAlice{
 		JFrame fen = new JFrame();
 		JTabbedPane fullonglet  = new JTabbedPane();
 		OngletAlice al = new OngletAlice();
-		AffichageComic affiComic = new AffichageComic();
-		AffichagePerso affiPerso = new AffichagePerso();
-		
+		AffichageComic affi = new AffichageComic();
 		//fullonglet.addTab("MABITE", al.pan);
-		fullonglet.addTab("AffichageComic", affiComic.envoie());
-		fullonglet.addTab("AffichagePerso",affiPerso.envoie());
-		
+		fullonglet.addTab("MABITE", affi.envoie());
 		fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fen.setVisible(true);
 		fen.getContentPane().add(fullonglet);

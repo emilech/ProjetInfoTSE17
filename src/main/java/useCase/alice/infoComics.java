@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+/**Classe pour l'UseCase 2 d'Alice la Recherche de comic **/
 public class infoComics {
 	
-	//Iron Fist 
+	/**Fonction qui appelle la requete qui recupere le contenu et le traite pour recuperer les bonnes informations **/
 	public String GetComics(String nom,String annee, String chap,String var) throws UnsupportedEncodingException{
 		String categorie = VerifieComics(nom,annee,chap,var);
 		String midUrl = "";
@@ -59,13 +60,6 @@ public class infoComics {
 					resultat += "<b> "+titre +"</b><br><br><u> Description :</u><br>"+description + "<br><u> Date :</u><br>" +date +"<br><br>"+img+"<br><br>";
 					resultat += "<hr>";
 				}
-				//System.out.println(obj2);
-				//System.out.println(obj2.get("title"));
-				//System.out.println(obj2.get("id"));
-				//System.out.println((obj2.getJSONArray("urls").getJSONObject(0)).get("url"));
-				//System.out.println((obj2.getJSONArray("urls").getJSONObject(1)).get("url"));
-				
-				//return resultat;
 			}
 			else{
 				System.out.println("Le personnage n'a pas été trouvé");
@@ -83,7 +77,8 @@ public class infoComics {
 		
 		return resultat;
 	}
-	public static String VerifieComics(String titre,String annee, String chap, String var) throws UnsupportedEncodingException{
+	/**Fonction qui permet de preciser la recherche de Comic elle regarde quelle input sont vide  **/ 
+	public String VerifieComics(String titre,String annee, String chap, String var) throws UnsupportedEncodingException{
 		int a,b,c =0;
 		String url="";
 		if(titre!=""){

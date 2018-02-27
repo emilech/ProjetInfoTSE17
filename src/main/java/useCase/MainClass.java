@@ -6,7 +6,7 @@ import interfaceGraphique.Appli;
 
 import useCase.alice.*;
 public class MainClass {
-/** ceci est du java code **/
+/** Main Principal qui appelle l'application graphique **/
 	public static void main(String[] args) throws Exception {
 		/*Scanner reader = new Scanner(System.in);  // Reading from System.in
 		System.out.println("Enter a title : ");
